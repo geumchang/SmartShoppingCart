@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Result</title>
+</head>
+<body>
+    <h1>Scan Result</h1>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+        <a href="/">Try Again</a>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Kiosk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_banner.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <h1>TUK 마트에 오신 걸 환영합니다!</h1>
+            <p>원하시는 서비스를 선택하세요</p>
+            <button onclick="window.location.href='/scan'" class="btn">바코드 스캔</button>
+            <button onclick="window.location.href='/map'" class="btn">상품 위치 보기</button>
+            <button onclick="window.location.href='/cart'" class="btn">내 쇼핑카트 확인</button>
+            <a href="/checkout" class="btn">결제하기</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='inactivity.js') }}"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Kiosk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_index.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <h1>TUK 마트에 오신 걸 환영합니다!</h1>
+            <p>원하시는 서비스를 선택하세요</p>
+            <button onclick="window.location.href='/scan'" class="btn">바코드 스캔</button>
+            <button onclick="window.location.href='/map'" class="btn">상품 위치 보기</button>
+            <button onclick="window.location.href='/cart'" class="btn">View Shopping Cart</button>
+            <a href="/checkout" class="btn">결제하기</a>
+        </div>
+    </div>
+    <div id="ad-banner" class="ad-banner">
+        <h2>광고 배너</h2>
+        <p>이것은 광고입니다.</p>
+        <img src="{{ url_for('static', filename='ad_image.jpg') }}" alt="Ad Image">
+    </div>
+
+    <script>
+        let timeout;
+
+        function resetTimer() {
+            clearTimeout(timeout);
+            document.getElementById('ad-banner').style.display = 'none';
+            timeout = setTimeout(showAd, 20000);  // 20 seconds
+        }
+
+        function showAd() {
+            document.getElementById('ad-banner').style.display = 'flex';
+        }
+
+        window.onload = resetTimer;
+        document.onmousemove = resetTimer;
+        document.onkeydown = resetTimer;
+        document.ontouchstart = resetTimer;
+    </script>
+</body>
+</html> -->

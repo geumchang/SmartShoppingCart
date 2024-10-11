@@ -1,0 +1,43 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Banner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_banner.css') }}">
+</head>
+<body>
+    <div id="ad-banner" class="ad-banner">
+        <h2>광고 배너</h2>
+        <p>이것은 광고입니다.</p>
+        <img src="{{ url_for('static', filename='ad_image.jpg') }}" alt="Ad Image">
+    </div>
+
+    <script src="{{ url_for('static', filename='inactivity.js') }}"></script>
+</body>
+</html> -->
+
+<!-- banner.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Banner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_banner.css') }}">
+</head>
+<body>
+    <div id="ad-banner" class="ad-banner">
+        <h2>광고 배너</h2>
+        <p>이것은 광고입니다.</p>
+        <img src="{{ url_for('static', filename='ad_image.jpg') }}" alt="Ad Image">
+        <button class="btn" onclick="goBack()">돌아가기</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    color: white; /* White text color */
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    color: #ecf0f1; /* Light gray color */
+    text-align: center;
+}
+
+h3 {
+    color: white; /* White color */
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: rgba(0, 0, 0, 0.6); /* Slightly transparent background for items */
+    color: white; /* White text color */
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db; /* Button color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker button color on hover */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db; /* Button color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.search-button:hover {
+    background-color: #2980b9; /* Darker button color on hover */
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db; /* Button color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.button-link:hover {
+    background-color: #2980b9; /* Darker button color on hover */
+}
+
+.floors-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.floor-box {
+    background: rgba(0, 0, 0, 0.7); /* Dark background for floor box */
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.category-box {
+    margin-bottom: 20px;
+}
+
+/* Custom styles for Simple Keyboard */.myTheme .hg-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.myTheme .hg-button.hg-button-pressed {
+    background-color: #ddd;
+}
+
+#keyboard {
+    display: none; /* Hide the keyboard initially */
+    margin-top: 20px;
+}

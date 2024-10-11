@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    color: white; /* White text color */
+    font-size: 25px; /* Increased font size */
+}
+
+.container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6); /* Slightly transparent background for content */
+    padding: 40px; /* Increased padding */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 3.5em; /* Increased font size */
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    color: white; /* White text color */
+    font-size: 1.2em; /* Increased font size */
+}
+
+th, td {
+    text-align: left;
+    padding: 15px; /* Increased padding */
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #2c3e50; /* Darker background for table headers */
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background for even rows */
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+}
+
+.button-link {
+    display: inline-block;
+    padding: 15px 30px; /* Increased padding */
+    margin-top: 20px;
+    font-size: 1.2em; /* Increased font size */
+    color: white; /* White text color */
+    background-color: #3498db; /* Button color */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-link:hover {
+    background-color: #2980b9; /* Darker button color on hover */
+}

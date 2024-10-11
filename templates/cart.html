@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>쇼핑 카트</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_cart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_banner.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>쇼핑 카트</h1>
+        <ul>
+            {% for item in cart %}
+                <li class="cart-item">
+                    {{ item.name }} - {{ item.price }}원<br> (수량: <span class="quantity">{{ item.quantity }}</span>)
+                    <button class="delete-btn" data-barcode="{{ item.barcode }}">전체 삭제</button>
+                    <button class="add-btn" data-barcode="{{ item.barcode }}" data-context="{{ context }}">추가</button>
+                    <button class="remove-btn" data-barcode="{{ item.barcode }}">빼기</button>
+                    <button class="lowest-price-btn">{{ item.name }} 인터넷 최저가 알아보기</button>
+                    <button class="coupang-lowest-price-btn">{{ item.name }} 쿠팡 최저가 알아보기</button>
+                    {% if item.category == 'Beverage' or item.category == 'Snack' %}
+                        <button class="recipe-btn">{{ item.name }}을 이용한 레시피 알아보기</button>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <h2>총 금액: <span id="total">{{ total }}원</span></h2>
+        <div class="buttons-container">
+            <a href="/scan" class="button-link">다른 바코드 스캔</a>
+            <a href="/" class="button-link">홈으로 가기</a>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.delete-btn').click(function() {
+                var barcode = $(this).data('barcode');
+                var $btn = $(this);  // Reference to the button clicked
+            
+                $.post('/delete_item', { barcode: barcode }, function(data) {
+                    if (data.success) {
+                        // Update quantity and remove item if necessary
+                        var $cartItem = $btn.closest('.cart-item');
+                        var $quantityElement = $cartItem.find('.quantity');  // Assuming a span or div with class 'quantity'
+            
+                        // Update the quantity displayed
+                        var newQuantity = parseInt($quantityElement.text());
+                        newQuantity = 0;  // Decrease quantity by 1
+                        $quantityElement.text(newQuantity);
+            
+                        // Optionally remove the entire cart item from the DOM if quantity is 0
+                        if (newQuantity === 0) {
+                            $cartItem.remove();
+                        }
+            
+                        // Update the total amount displayed
+                        $('#total').text(data.total);  // Assuming 'total' is updated in the JSON response
+                    }
+                });
+            });
+
+            $('.add-btn').click(function() {
+                var barcode = $(this).data('barcode');
+                var context = $(this).data('context');
+                var $btn = $(this);  // Reference to the button clicked
+            
+                $.post('/add_item', { barcode: barcode, context: context }, function(data) {
+                    if (data.success) {
+                        // Update quantity in the DOM
+                        var $cartItem = $btn.closest('.cart-item');
+                        var $quantityElement = $cartItem.find('.quantity');  // Assuming a span or div with class 'quantity'
+            
+                        // Update the quantity displayed
+                        var newQuantity = parseInt($quantityElement.text()) + 1;
+                        $quantityElement.text(newQuantity);
+            
+                        // Optionally update the total amount displayed
+                        $('#total').text(data.total);  // Assuming 'total' is updated in the JSON response
+                    }
+                });
+            });
+            $('.remove-btn').click(function() {
+                var barcode = $(this).data('barcode');
+                var context = $(this).data('context');
+                var $btn = $(this);  // Reference to the button clicked
+                $.post('/decrease_item', { barcode: barcode }, function(data) {
+                    if (data.success) {
+                        // Update quantity in the DOM
+                        var $cartItem = $btn.closest('.cart-item');
+                        var $quantityElement = $cartItem.find('.quantity');  // Assuming a span or div with class 'quantity'
+            
+                        // Update the quantity displayed
+                        var newQuantity = parseInt($quantityElement.text()) - 1;
+                        if (newQuantity >= 0) {
+                            $quantityElement.text(newQuantity);
+                        } else {
+                            $quantityElement.text('0');  // Set quantity to 0 if it goes negative
+                        }
+            
+                        // Optionally update the total amount displayed
+                        $('#total').text(data.total);  // Assuming 'total' is updated in the JSON response
+                    }
+
+
+                });
+            });
+
+            $('.lowest-price-btn').click(function() {
+                var productName = $(this).text().split(' 인터넷 최저가 알아보기')[0];
+                $.post('/get_lowest_price', { product_name: productName }, function(data) {
+                    alert('최저가: ' + data.price + '\n상품명: ' + data.name + '\n배달비: ' + data.link);
+                });
+            });
+
+            $('.coupang-lowest-price-btn').click(function() {
+                var productName = $(this).text().split(' 쿠팡 최저가 알아보기')[0];
+                $.post('/get_coupang_lowest_price', { product_name: productName }, function(data) {
+                    alert('최저가: ' + data.price + '\n상품명: ' + data.name + '\n배달도착예정:'+data.arrival);
+                });
+            });
+        });
+    </script>
+
+    <!-- <script src="{{ url_for('static', filename='inactivity.js') }}"></script> -->
+</body>
+</html>
